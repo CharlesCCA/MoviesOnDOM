@@ -1,0 +1,37 @@
+.header {
+  color: gold;
+  text-shadow: 2px 2px darkslategrey;
+  text-align: center;
+}
+
+body {
+  background-color: brown;
+  color: lemonchiffon;
+  text-shadow: 2px 2px darkslategrey;
+}
+
+.pageContainer {
+  display: flex;
+  flex-wrap: row;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 220px;
+  background-color: royalblue;
+  padding: 10px;
+  margin: 10px;
+  height: 500px;
+}
+
+.card-img {
+  height: 326px;
+}
+
+.card-title, .card-date, .card-time, .card-box {
+  font-size: 16px;
+}
