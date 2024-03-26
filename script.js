@@ -12,12 +12,10 @@ const movies = [
 function createCardHTML(movie) {
   return `
     <div class="card">
-      <img class="card-img" src="${movie.imgUrl}" alt="${movie.name}">
-      <div class="card-details">
-        <h2 class="card-title">${movie.name}</h2>
-        <p class="card-date">Date: ${movie.date}</p>
-        <p class="card-time">Duration: ${movie.time}</p>
-        <p class="card-box">Box Office: ${movie.boxOffice}</p>
+      <div class="modalButton">
+        <button class="openModalBtn">
+          <img class="card-img" src="${movie.imgUrl}" alt="${movie.name}">
+        </button>
       </div>
     </div>
   `;
@@ -25,3 +23,45 @@ function createCardHTML(movie) {
 
 const cardsHTML = movies.map(createCardHTML).join("");
 document.querySelector('.cards').innerHTML = cardsHTML;
+
+// Get the modal and close button elements
+const modal = document.querySelector('.myModal');
+const closeModalBtn = document.querySelector(".close");
+
+// Function to open modal
+function openModal(movie) {
+  modal.style.display = "block";
+  const modalDetails = document.querySelector('.modal-details');
+  modalDetails.innerHTML = `
+    <h2>${movie.name}</h2>
+    <p>Date: ${movie.date}</p>
+    <p>Duration: ${movie.time}</p>
+    <p>Box Office: ${movie.boxOffice}</p>
+  `;
+}
+
+// Function to close modal
+function closeModal() {
+  modal.style.display = "none";
+}
+
+// Event listener for opening modal when View Details button is clicked
+document.querySelectorAll('.openModalBtn').forEach((button, index) => {
+  button.addEventListener('click', () => {
+    openModal(movies[index]);
+  });
+});
+
+// Event listener for closing modal when close button is clicked
+closeModalBtn.addEventListener('click', () => {
+  closeModal();
+});
+
+// Event listener for closing modal when clicking outside the modal
+window.addEventListener('click', (event) => {
+  if (event.target == modal) {
+    closeModal();
+  }
+});
+
+
